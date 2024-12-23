@@ -1,4 +1,4 @@
-namespace Ice.TcpLogger
+namespace k3d.Logging.Tcp
 {
     public interface ILoggingServer: IDisposable
     {

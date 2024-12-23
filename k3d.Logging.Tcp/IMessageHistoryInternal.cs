@@ -1,6 +1,6 @@
 using k3d.Logging.Interface;
 
-namespace Ice.TcpLogger
+namespace k3d.Logging.Tcp
 {
     internal interface IMessageHistoryInternal: IMessageHistory, IDisposable
     {

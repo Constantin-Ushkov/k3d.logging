@@ -1,11 +1,6 @@
-﻿using Ice.Core.Reporting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using k3d.Logging.Interface;
 
-namespace Ice.TcpLogger
+namespace k3d.Logging.Tcp
 {
     internal interface IMessageSerializer
     {

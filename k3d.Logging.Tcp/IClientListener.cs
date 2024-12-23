@@ -1,4 +1,4 @@
-namespace Ice.TcpLogger
+namespace k3d.Logging.Tcp
 {
     internal interface IClientListener: IDisposable
     {

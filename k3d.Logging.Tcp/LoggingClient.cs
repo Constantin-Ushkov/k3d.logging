@@ -1,9 +1,9 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using Ice.Core.Reporting;
+using k3d.Logging.Interface;
 
-namespace Ice.TcpLogger
+namespace k3d.Logging.Tcp
 {
     internal class LoggingClient: ILoggingClient
     {

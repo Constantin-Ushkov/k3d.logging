@@ -3,7 +3,7 @@ using System.Text;
 using k3d.Common.Diagnostics;
 using k3d.Logging.Interface;
 
-namespace Ice.TcpLogger
+namespace k3d.Logging.Tcp
 {
     internal class ClientListener: IClientListener
     {

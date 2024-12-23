@@ -1,5 +1,5 @@
 ﻿
-namespace Ice.TcpLogger
+namespace k3d.Logging.Tcp
 {
     public class LoggingServerConfiguration : ILoggingServerConfiguration
     {

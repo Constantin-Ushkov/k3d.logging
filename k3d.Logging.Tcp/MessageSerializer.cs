@@ -1,8 +1,8 @@
-﻿using Ice.Core.Reporting;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 using System.Text;
+using k3d.Logging.Interface;
 
-namespace Ice.TcpLogger
+namespace k3d.Logging.Tcp
 {
     internal class MessageSerializer : IMessageSerializer // todo: ProtocolFormatter ? also serialize\deserialize ACK here
     {

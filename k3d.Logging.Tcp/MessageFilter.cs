@@ -1,7 +1,7 @@
-using Ice.Core.Reporting;
+using k3d.Logging.Interface;
 using Ice.Core.Utilities;
 
-namespace Ice.TcpLogger
+namespace k3d.Logging.Tcp
 {
     public class MessageFilter: IMessageFilterInternal
     {

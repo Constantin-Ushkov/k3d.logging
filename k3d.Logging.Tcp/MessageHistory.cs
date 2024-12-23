@@ -1,7 +1,7 @@
-using Ice.Core.Diagnostics;
-using Ice.Core.Reporting;
+using k3d.Common.Diagnostics;
+using k3d.Logging.Interface;
 
-namespace Ice.TcpLogger
+namespace k3d.Logging.Tcp
 {
     internal class MessageHistory: IMessageHistoryInternal
     {

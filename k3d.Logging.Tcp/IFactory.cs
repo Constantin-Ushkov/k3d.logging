@@ -1,6 +1,6 @@
 using System.Net.Sockets;
 
-namespace Ice.TcpLogger
+namespace k3d.Logging.Tcp
 {
     internal interface IFactory
     {
