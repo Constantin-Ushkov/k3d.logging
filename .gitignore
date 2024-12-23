@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/k3d.Logging.Impl/obj
+/k3d.Logging.Interface/obj
+/k3d.Logging.Tcp/obj
+/k3d.Logging.Tcp/bin
