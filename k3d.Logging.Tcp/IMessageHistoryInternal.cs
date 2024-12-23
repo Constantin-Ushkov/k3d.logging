@@ -1,4 +1,4 @@
-using Ice.Core.Reporting;
+using k3d.Logging.Interface;
 
 namespace Ice.TcpLogger
 {

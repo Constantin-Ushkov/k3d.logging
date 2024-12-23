@@ -9,6 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "k3d.Logging.Tcp", "k3d.Logg
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "k3d.Logging.Impl", "k3d.Logging.Impl\k3d.Logging.Impl.csproj", "{AD294923-6B45-4701-BA63-D68107EFBD3D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3dparties", "3dparties", "{73A9761A-E5FD-433D-A208-5E8138F65C36}"
+	ProjectSection(SolutionItems) = preProject
+		3dparties\k3d.Common.dll = 3dparties\k3d.Common.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

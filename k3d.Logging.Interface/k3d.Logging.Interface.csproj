@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="k3d.Common">
+      <HintPath>..\3dparties\k3d.Common.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

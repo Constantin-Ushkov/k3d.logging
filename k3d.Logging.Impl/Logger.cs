@@ -1,4 +1,4 @@
-using Ice.Core.Diagnostics;
+using k3d.Common.Diagnostics;
 using k3d.Logging.Interface;
 
 namespace k3d.Logging.Impl
