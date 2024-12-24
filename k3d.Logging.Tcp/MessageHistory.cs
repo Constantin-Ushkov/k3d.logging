@@ -48,7 +48,7 @@ namespace k3d.Logging.Tcp
         }
 
         public void AddMessageInternal(Severity severity, string message)
-            => AddMessage(new LogMessageDto(0, Constants.ModuleName, severity, Constants.Topic, message, null));
+            => AddMessage(new LogMessageDto(0, Constants.ModuleName, severity, Constants.Topic, message, DateTime.Now, null));
 
         public void Dispose()
         {

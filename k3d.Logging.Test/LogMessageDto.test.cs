@@ -8,7 +8,7 @@ namespace k3d.Logging.Test
         [TestMethod]
         public void TestSerialization()
         {
-            var dto1 = new LogMessageDto(1, "mod1", Severity.Warning, "topic1", "msg {0} {1}", new[] { 1, 2 });
+            var dto1 = new LogMessageDto(1, "mod1", Severity.Warning, "topic1", "msg {0} - {1} end", DateTime.Now, new object[] { 1, 2 });
 
             dto1.MakeMessageStringFormatted();
 

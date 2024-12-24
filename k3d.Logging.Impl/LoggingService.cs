@@ -66,7 +66,7 @@ namespace k3d.Logging.Impl
                 return;
             }
 
-            var messageDto = new LogMessageDto(_messageCounter++, module, severity, topic, message, args);
+            var messageDto = new LogMessageDto(_messageCounter++, module, severity, topic, message, DateTime.Now, args);
 
             foreach(var listener in Listeners)
             {

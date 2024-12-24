@@ -4,7 +4,9 @@
 
 /.vs
 /k3d.Logging.Impl/obj
+/k3d.Logging.Impl/bin
 /k3d.Logging.Interface/obj
+/k3d.Logging.Interface/bin
 /k3d.Logging.Tcp/obj
 /k3d.Logging.Tcp/bin
 /k3d.Logging.Test/bin

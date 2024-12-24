@@ -1,7 +1,5 @@
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
-
-// todo: move serialization logic out of this class
+using System.Text.Json;
 
 namespace k3d.Logging.Interface
 {
@@ -16,15 +14,15 @@ namespace k3d.Logging.Interface
         public string Message { get; private set; }
         public object[]? Args { get; private set; }
 
-        public LogMessageDto(uint ordinal, string module, Severity severity, string topic, string message, params object[]? args)
+        public LogMessageDto(uint ordinal, string module, Severity severity, string topic, string message, DateTime createdTime, params object[]? args)
         {
             Ordinal = ordinal;
             Module = module;
             Severity = severity;
             Topic = topic;
             Message = message;
+            CreatedTime = createdTime;
             Args = args;
-            CreatedTime = DateTime.Now;
         }
 
         public string FormatMessageString()
@@ -75,35 +73,12 @@ namespace k3d.Logging.Interface
             => HashCode.Combine(Ordinal, Module, Severity, CreatedTime, Topic, Message, Args);
 
         public byte[] ToByteArray()
-        {
-            // https://metanit.com/sharp/tutorial/6.2.php
-            // todo: _core.Serialization.Binary.Serialize()
-            
-            using var memory = new MemoryStream();
-            var formatter = new BinaryFormatter();
-            
-            formatter.Serialize(memory, this);
-            return memory.ToArray();
-        }
+            => JsonSerializer.SerializeToUtf8Bytes(this);
 
         public static LogMessageDto FromByteArray(byte[] array, uint offset, uint count)
-        {
-            using var memory = new MemoryStream();
-            
-            memory.Write(array, (int)offset, (int)count);
-            memory.Seek(0, SeekOrigin.Begin);
-            
-            return new BinaryFormatter().Deserialize(memory) as LogMessageDto;
-        }
-        
+            => FromByteArray(array, (int)offset, (int)count);
+
         public static LogMessageDto FromByteArray(byte[] array, int offset, int count)
-        {
-            using var memory = new MemoryStream();
-            
-            memory.Write(array, offset, count);
-            memory.Seek(0, SeekOrigin.Begin);
-            
-            return new BinaryFormatter().Deserialize(memory) as LogMessageDto;
-        }
+            => JsonSerializer.Deserialize<LogMessageDto>(new ReadOnlySpan<byte>(array, offset, count))!;
     }
 }
