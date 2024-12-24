@@ -59,6 +59,21 @@ namespace k3d.Logging.Interface
             return builder.ToString();
         }
 
+        public override bool Equals(object? obj)
+        {
+            return obj is LogMessageDto dto &&
+                   Ordinal == dto.Ordinal &&
+                   Module == dto.Module &&
+                   Severity == dto.Severity &&
+                   CreatedTime == dto.CreatedTime &&
+                   Topic == dto.Topic &&
+                   Message == dto.Message &&
+                   EqualityComparer<object[]?>.Default.Equals(Args, dto.Args);
+        }
+
+        public override int GetHashCode()
+            => HashCode.Combine(Ordinal, Module, Severity, CreatedTime, Topic, Message, Args);
+
         public byte[] ToByteArray()
         {
             // https://metanit.com/sharp/tutorial/6.2.php

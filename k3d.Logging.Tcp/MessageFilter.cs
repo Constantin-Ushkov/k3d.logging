@@ -1,5 +1,5 @@
+using k3d.Common.Collections;
 using k3d.Logging.Interface;
-using Ice.Core.Utilities;
 
 namespace k3d.Logging.Tcp
 {

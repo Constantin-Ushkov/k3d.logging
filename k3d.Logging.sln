@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3dparties", "3dparties", "{
 		3dparties\k3d.Common.dll = 3dparties\k3d.Common.dll
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "k3d.Logging.Test", "k3d.Logging.Test\k3d.Logging.Test.csproj", "{FE1B1D65-259C-4E74-9CF0-F2187680E0B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{AD294923-6B45-4701-BA63-D68107EFBD3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD294923-6B45-4701-BA63-D68107EFBD3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD294923-6B45-4701-BA63-D68107EFBD3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE1B1D65-259C-4E74-9CF0-F2187680E0B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE1B1D65-259C-4E74-9CF0-F2187680E0B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE1B1D65-259C-4E74-9CF0-F2187680E0B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE1B1D65-259C-4E74-9CF0-F2187680E0B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
