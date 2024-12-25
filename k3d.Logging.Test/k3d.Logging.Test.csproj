@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\k3d.Logging.Impl\k3d.Logging.Impl.csproj" />
     <ProjectReference Include="..\k3d.Logging.Interface\k3d.Logging.Interface.csproj" />
   </ItemGroup>
 

@@ -3,6 +3,8 @@ namespace k3d.Logging.Interface
 {
     public interface ILoggingService
     {
+        IFactory Factory { get; }
+
         void Verbose(string module, string topic, string message, params object[] args);
         void Debug(string module, string topic, string message, params object[] args);
         void Info(string module, string topic, string message, params object[] args);

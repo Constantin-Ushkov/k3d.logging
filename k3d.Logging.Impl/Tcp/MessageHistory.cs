@@ -1,7 +1,7 @@
 using k3d.Common.Diagnostics;
 using k3d.Logging.Interface;
 
-namespace k3d.Logging.Tcp
+namespace k3d.Logging.Impl.Tcp
 {
     internal class MessageHistory: IMessageHistoryInternal
     {

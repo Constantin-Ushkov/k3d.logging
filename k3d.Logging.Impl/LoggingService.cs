@@ -6,6 +6,7 @@ namespace k3d.Logging.Impl
     {
         #region Properties
 
+        public IFactory Factory { get; } = new Factory();
         public List<ILoggingListener> Listeners { get; } = [];
         public Severity Filter { get; set; } = Severity.Debug;
 

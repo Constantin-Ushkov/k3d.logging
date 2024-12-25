@@ -1,11 +1,18 @@
 ﻿using System.Runtime.Serialization;
 using System.Text;
+using k3d.Common.Diagnostics;
 using k3d.Logging.Interface;
 
-namespace k3d.Logging.Tcp
+namespace k3d.Logging.Impl.Tcp
 {
-    internal class MessageSerializer : IMessageSerializer // todo: ProtocolFormatter ? also serialize\deserialize ACK here
+    internal class ProtocolFormatter : IMessageSerializer
     {
+        public ProtocolFormatter(IMessageDtoSerializer messageDtoSerializer)
+        {
+            Assert.Argument.IsNotNull(messageDtoSerializer, nameof(messageDtoSerializer));
+            _messageDtoSerializer = messageDtoSerializer;
+        }
+
         public LogMessageDto DeserializeMessage(byte[] bytes)
         {
             if (bytes is null)
@@ -37,14 +44,12 @@ namespace k3d.Logging.Tcp
                     $"{length}, whole data size is: {bytes.Length}.");
             }
 
-            return LogMessageDto.FromByteArray(bytes, _messageSignature.Length + sizeof(int), length);
+            return _messageDtoSerializer.Deserialize(bytes, _messageSignature.Length + sizeof(int), length);
         }
 
         public byte[] SerializeMessage(LogMessageDto dto)
         {
-            dto.MakeMessageStringFormatted();
-
-            var bytes = dto.ToByteArray();
+            var bytes = _messageDtoSerializer.Serialize(dto);
             using var memory = new MemoryStream();
 
             memory.Write(_messageSignature);
@@ -72,7 +77,7 @@ namespace k3d.Logging.Tcp
             return true;
         }
 
-        private readonly byte[] _messageSignature
-            = Encoding.UTF8.GetBytes(Constants.Signatures.Message);
+        private readonly IMessageDtoSerializer _messageDtoSerializer;
+        private readonly byte[] _messageSignature = Encoding.UTF8.GetBytes(Constants.Signatures.Message);
     }
 }

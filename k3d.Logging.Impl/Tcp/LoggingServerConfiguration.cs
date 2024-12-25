@@ -1,5 +1,5 @@
 ﻿
-namespace k3d.Logging.Tcp
+namespace k3d.Logging.Impl.Tcp
 {
     public class LoggingServerConfiguration : ILoggingServerConfiguration
     {

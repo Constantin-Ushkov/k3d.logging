@@ -3,7 +3,7 @@ using System.Net.Sockets;
 using System.Text;
 using k3d.Logging.Interface;
 
-namespace k3d.Logging.Tcp
+namespace k3d.Logging.Impl.Tcp
 {
     internal class LoggingClient: ILoggingClient
     {

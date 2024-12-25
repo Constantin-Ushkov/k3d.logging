@@ -1,6 +1,6 @@
 using System.Net.Sockets;
 
-namespace k3d.Logging.Tcp
+namespace k3d.Logging.Impl.Tcp
 {
     public class Factory: IFactory
     {

@@ -1,6 +1,6 @@
 ﻿using k3d.Logging.Interface;
 
-namespace k3d.Logging.Tcp
+namespace k3d.Logging.Impl.Tcp
 {
     internal interface IMessageSerializer
     {
