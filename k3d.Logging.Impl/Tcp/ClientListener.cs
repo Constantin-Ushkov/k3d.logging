@@ -9,19 +9,18 @@ namespace k3d.Logging.Impl.Tcp
     {
         public string Name
         {
-            get; private set;
+            get; private set; // todo: ...
         }
         
-        public ClientListener(Socket socket, IMessageHistoryInternal history, IMessageSerializer? serializer = null)
+        public ClientListener(Socket socket, IMessageHistoryInternal history, IMessageSerializer serializer)
         {
             Assert.Argument.IsNotNull(socket, nameof(socket));
             Assert.Argument.IsNotNull(history, nameof(history));
-            
+            Assert.Argument.IsNotNull(serializer, nameof(serializer));
+
             _socket = socket;
             _history = history;
-
-            _serializer = serializer
-                ?? new MessageSerializer();
+            _serializer = serializer;
             
             StartThread();
         }

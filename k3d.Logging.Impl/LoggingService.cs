@@ -6,13 +6,23 @@ namespace k3d.Logging.Impl
     {
         #region Properties
 
-        public IFactory Factory { get; } = new Factory();
+        internal IFactory Factory { get; }
         public List<ILoggingListener> Listeners { get; } = [];
         public Severity Filter { get; set; } = Severity.Debug;
 
         #endregion // Properties
 
         #region Constructors/Finalizers
+
+        public LoggingService() :
+            this(null)
+        {
+        }
+
+        internal LoggingService(IFactory? factory)
+        {
+            Factory = factory ?? new Factory();
+        }
 
         ~LoggingService()
         {

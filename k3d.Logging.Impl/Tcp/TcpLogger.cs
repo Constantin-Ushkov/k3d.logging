@@ -1,19 +1,20 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using k3d.Common.Diagnostics;
 using k3d.Logging.Interface;
 
 namespace k3d.Logging.Impl.Tcp
 {
-    internal class LoggingClient: ILoggingClient
+    internal class TcpLogger: ITcpLogger
     {
-        public LoggingClient(ILoggingClientConfiguration configuration, IMessageSerializer? serializer = null)
+        public TcpLogger(ILoggingClientConfiguration configuration, IMessageSerializer serializer)
         {
-            _configuration = configuration
-                ?? throw new ArgumentNullException(nameof(configuration));
+            Assert.Argument.IsNotNull(configuration, nameof(configuration));
+            Assert.Argument.IsNotNull(serializer, nameof(serializer));
 
-            _serializer = serializer
-                ?? new MessageSerializer();
+            _configuration = configuration;
+            _serializer = serializer;
             
             _thread = new Thread(ThreadMethod);
             _thread.Start();
