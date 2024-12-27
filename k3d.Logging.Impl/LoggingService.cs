@@ -7,7 +7,7 @@ namespace k3d.Logging.Impl
         #region Properties
 
         internal IFactory Factory { get; }
-        public List<ILoggingListener> Listeners { get; } = [];
+        public List<IOutputWriter> Listeners { get; } = [];
         public Severity Filter { get; set; } = Severity.Debug;
 
         #endregion // Properties
@@ -81,7 +81,7 @@ namespace k3d.Logging.Impl
 
             foreach(var listener in Listeners)
             {
-                listener.Message(messageDto);
+                listener.WriteMessage(messageDto);
             }
         }
 

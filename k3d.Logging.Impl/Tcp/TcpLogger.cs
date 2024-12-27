@@ -20,7 +20,7 @@ namespace k3d.Logging.Impl.Tcp
             _thread.Start();
         }
         
-        public void Message(LogMessageDto message)
+        public void WriteMessage(LogMessageDto message)
         {
             Enqueue(message);
         }

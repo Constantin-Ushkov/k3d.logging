@@ -3,7 +3,7 @@ using k3d.Logging.Interface;
 
 namespace k3d.Logging.Impl
 {
-    public class ConsoleLogger : ILoggingListener
+    public class ConsoleLogger : IOutputWriter
     {
         #region Dll Import
 
@@ -37,7 +37,7 @@ namespace k3d.Logging.Impl
 
         #region IReportingListener Methods
         
-        public void Message(LogMessageDto message)
+        public void WriteMessage(LogMessageDto message)
         {
             Console.WriteLine($"[{message.CreatedTime}] {message.Severity} " +
                 $"[{message.Module}{(string.IsNullOrEmpty(message.Topic) ? string.Empty : "\\" + message.Topic)}] " +
