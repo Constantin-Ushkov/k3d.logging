@@ -6,9 +6,12 @@ namespace k3d.Logging.Impl
 {
     internal interface IFactory
     {
-        ITcpLogger CreateTcpLogger(ILoggingClientConfiguration configuration, IMessageSerializer? serializer);
+        ITcpWriter CreateTcpLogger(ILoggingClientConfiguration configuration, IMessageSerializer? serializer);
         IMessageDtoSerializer CreateMessageDtoSerializer();
         IMessageSerializer CreateMessageSerializer(IMessageDtoSerializer? messageDtoSerializer = null);
+
+        ILoggerCollection CreateLoggerCollection(ILoggingService service);
+        IOutputWriterCollection CreateOutputWriterCollection();
 
         IMessageHistoryInternal CreateMessageHistory();
         IMessageFilterInternal CreateMessageFilter();

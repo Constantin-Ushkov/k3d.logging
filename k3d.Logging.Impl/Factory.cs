@@ -17,14 +17,20 @@ namespace k3d.Logging.Impl
         public static ILoggingServer CreateTcpServer(ILoggingServerConfiguration configuration)
             => new LoggingServer(configuration);
 
-        ITcpLogger IFactory.CreateTcpLogger(ILoggingClientConfiguration configuration, IMessageSerializer? serializer)
-            => new TcpLogger(configuration, serializer ?? _ifactory.CreateMessageSerializer());
+        ITcpWriter IFactory.CreateTcpLogger(ILoggingClientConfiguration configuration, IMessageSerializer? serializer)
+            => new TcpWriter(configuration, serializer ?? _ifactory.CreateMessageSerializer());
 
         IMessageDtoSerializer IFactory.CreateMessageDtoSerializer()
             => new MessageDtoSerializer();
 
         IMessageSerializer IFactory.CreateMessageSerializer(IMessageDtoSerializer? messageDtoSerializer)
             => new ProtocolFormatter(messageDtoSerializer ?? _ifactory.CreateMessageDtoSerializer());
+
+        ILoggerCollection IFactory.CreateLoggerCollection(ILoggingService service)
+            => new LoggerCollection(service);
+
+        IOutputWriterCollection IFactory.CreateOutputWriterCollection()
+            => new OutputWriterCollection();
 
         IMessageHistoryInternal IFactory.CreateMessageHistory()
             => new MessageHistory(this);

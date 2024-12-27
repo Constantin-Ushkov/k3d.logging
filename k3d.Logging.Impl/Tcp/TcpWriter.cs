@@ -6,9 +6,9 @@ using k3d.Logging.Interface;
 
 namespace k3d.Logging.Impl.Tcp
 {
-    internal class TcpLogger: ITcpLogger
+    internal class TcpWriter: ITcpWriter
     {
-        public TcpLogger(ILoggingClientConfiguration configuration, IMessageSerializer serializer)
+        public TcpWriter(ILoggingClientConfiguration configuration, IMessageSerializer serializer)
         {
             Assert.Argument.IsNotNull(configuration, nameof(configuration));
             Assert.Argument.IsNotNull(serializer, nameof(serializer));

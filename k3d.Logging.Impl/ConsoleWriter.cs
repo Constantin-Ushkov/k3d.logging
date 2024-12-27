@@ -3,7 +3,7 @@ using k3d.Logging.Interface;
 
 namespace k3d.Logging.Impl
 {
-    public class ConsoleLogger : IOutputWriter
+    public class ConsoleWriter : IOutputWriter
     {
         #region Dll Import
 
@@ -20,7 +20,7 @@ namespace k3d.Logging.Impl
 
         #region Constructors/Finalizer
 
-        public ConsoleLogger(bool allocateConsole)
+        public ConsoleWriter(bool allocateConsole)
         {
             if (allocateConsole)
             {
@@ -28,7 +28,7 @@ namespace k3d.Logging.Impl
             }
         }
 
-        ~ConsoleLogger()
+        ~ConsoleWriter()
         {
             Dispose(false);
         }

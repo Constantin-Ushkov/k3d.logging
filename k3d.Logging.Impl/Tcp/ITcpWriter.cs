@@ -2,7 +2,7 @@ using k3d.Logging.Interface;
 
 namespace k3d.Logging.Impl.Tcp
 {
-    public interface ITcpLogger: IOutputWriter
+    public interface ITcpWriter: IOutputWriter
     {
     }
 }

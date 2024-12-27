@@ -1,11 +1,12 @@
 ﻿
 namespace k3d.Logging.Interface
 {
-    public interface IOutputWriterCollection: IEnumerable<IOutputWriter>
+    public interface IOutputWriterCollection: IEnumerable<IOutputWriter>, IDisposable
     {
         void Add(IOutputWriter writer);
+        bool Remove(IOutputWriter writer);
 
-        IOutputWriter AddConsoleWriter();
+        IOutputWriter AddConsoleWriter(bool allocateConsole);
         IOutputWriter AddFileWriter();
         IOutputWriter AddTcpWriter();
     }

@@ -2,12 +2,14 @@
 
 namespace k3d.Logging.Impl
 {
-    public class LoggingService : ILoggingService, IDisposable
+    public sealed class LoggingService : ILoggingService, IDisposable
     {
         #region Properties
 
+        public ILoggerCollection Loggers { get; }
+        public IOutputWriterCollection OutputWriters { get; }
+
         internal IFactory Factory { get; }
-        public List<IOutputWriter> Listeners { get; } = [];
         public Severity Filter { get; set; } = Severity.Debug;
 
         #endregion // Properties
@@ -22,11 +24,9 @@ namespace k3d.Logging.Impl
         internal LoggingService(IFactory? factory)
         {
             Factory = factory ?? new Factory();
-        }
 
-        ~LoggingService()
-        {
-            Dispose(false);
+            Loggers = Factory.CreateLoggerCollection(this);
+            OutputWriters = Factory.CreateOutputWriterCollection();
         }
 
         #endregion // Constructors/Finalizers
@@ -35,21 +35,6 @@ namespace k3d.Logging.Impl
 
         public void Init()
         {
-        }
-
-        public ILogger GetLogger(string module, string topic)
-        {
-            var name = $"{module}\\{topic}";
-
-            if (_loggers.TryGetValue(name, out var logger))
-            {
-                return logger;
-            }
-
-            logger = new Logger(this, module, topic);
-            _loggers.Add(name, logger);
-
-            return logger;
         }
 
         public void Verbose(string module, string topic, string message, params object[] args) =>
@@ -79,9 +64,9 @@ namespace k3d.Logging.Impl
 
             var messageDto = new LogMessageDto(_messageCounter++, module, severity, topic, message, DateTime.Now, args);
 
-            foreach(var listener in Listeners)
+            foreach(var writer in OutputWriters)
             {
-                listener.WriteMessage(messageDto);
+                writer.WriteMessage(messageDto);
             }
         }
 
@@ -91,37 +76,15 @@ namespace k3d.Logging.Impl
 
         public void Dispose()
         {
-            GC.SuppressFinalize(this);
-            Dispose(true);
-        }
-
-        private void Dispose(bool disposing)
-        {
-            if (_disposed)
-            {
-                return;
-            }
-
-            if (disposing)
-            {
-                foreach (var listener in Listeners)
-                {
-                    listener.Dispose();
-                }
-
-                Listeners.Clear();
-            }
-
-            _disposed = true;
+            // no unmanaged resources - no need for generic dispose pattern
+            OutputWriters.Dispose();
         }
 
         #endregion // IDisposable Implementation
 
         #region Fields
 
-        private bool _disposed;
         private uint _messageCounter;
-        private readonly Dictionary<string, ILogger> _loggers = new();
 
         #endregion // Fields
     }
