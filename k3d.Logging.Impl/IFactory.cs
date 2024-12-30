@@ -16,5 +16,7 @@ namespace k3d.Logging.Impl
         IMessageHistoryInternal CreateMessageHistory();
         IMessageFilterInternal CreateMessageFilter();
         IClientListener CreateClientListener(Socket socket, IMessageHistoryInternal history, IMessageSerializer? serializer = null);
+
+        IMessageFormatter CreateDefaultFormatter();
     }
 }

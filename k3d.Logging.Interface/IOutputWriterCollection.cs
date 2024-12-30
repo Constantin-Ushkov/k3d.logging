@@ -7,7 +7,7 @@ namespace k3d.Logging.Interface
         bool Remove(IOutputWriter writer);
 
         IOutputWriter AddConsoleWriter(bool allocateConsole);
-        IOutputWriter AddFileWriter();
+        IOutputWriter AddFileWriter(string file, bool overwrite, IMessageFormatter? formatter = null);
         IOutputWriter AddTcpWriter();
     }
 }

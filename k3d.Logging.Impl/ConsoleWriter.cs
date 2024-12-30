@@ -1,6 +1,8 @@
 ﻿using System.Runtime.InteropServices;
 using k3d.Logging.Interface;
 
+// todo: format provider
+
 namespace k3d.Logging.Impl
 {
     public class ConsoleWriter : IOutputWriter

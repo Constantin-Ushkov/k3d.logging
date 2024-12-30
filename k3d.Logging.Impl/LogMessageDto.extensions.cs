@@ -19,23 +19,5 @@ namespace k3d.Logging.Impl
             dto.Message = dto.FormatMessageString();
             dto.Args = null;
         }
-
-        public static string Format(this LogMessageDto dto) // todo: optional template string as a parameter
-        {
-            var builder = new StringBuilder();
-
-            builder.Append($"[{dto.CreatedTime}] {dto.Ordinal} [{dto.Severity}] [{dto.Module}\\{dto.Topic}] ");
-
-            if (dto.Args is not null)
-            {
-                builder.Append(dto.FormatMessageString());
-            }
-            else
-            {
-                builder.Append(dto.Message);
-            }
-
-            return builder.ToString();
-        }
     }
 }

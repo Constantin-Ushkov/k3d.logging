@@ -1,4 +1,5 @@
-﻿using k3d.Logging.Interface;
+﻿using k3d.Common.Diagnostics;
+using k3d.Logging.Interface;
 using System.Collections;
 
 namespace k3d.Logging.Impl
@@ -11,6 +12,12 @@ namespace k3d.Logging.Impl
         public bool Remove(IOutputWriter writer)
             => _writers.Remove(writer);
 
+        public OutputWriterCollection(IMessageFormatter formatter)
+        {
+            Assert.Argument.IsNotNull(formatter, nameof(formatter));
+            _formatter = formatter;
+        }
+
         public IOutputWriter AddConsoleWriter(bool allocateConsole)
         {
             var writer = new ConsoleWriter(allocateConsole);
@@ -20,9 +27,13 @@ namespace k3d.Logging.Impl
             return writer;
         }
 
-        public IOutputWriter AddFileWriter()
+        public IOutputWriter AddFileWriter(string file, bool overwrite, IMessageFormatter? formatter)
         {
-            throw new NotImplementedException();
+            var writer = new FileWriter(file, overwrite, formatter ?? _formatter);
+
+            _writers.Add(writer);
+
+            return writer;
         }
 
         public IOutputWriter AddTcpWriter()
@@ -44,5 +55,6 @@ namespace k3d.Logging.Impl
             => _writers.GetEnumerator();
 
         private readonly List<IOutputWriter> _writers = [];
+        private readonly IMessageFormatter _formatter;
     }
 }

@@ -30,7 +30,7 @@ namespace k3d.Logging.Impl
             => new LoggerCollection(service);
 
         IOutputWriterCollection IFactory.CreateOutputWriterCollection()
-            => new OutputWriterCollection();
+            => new OutputWriterCollection(_ifactory.CreateDefaultFormatter());
 
         IMessageHistoryInternal IFactory.CreateMessageHistory()
             => new MessageHistory(this);
@@ -40,6 +40,9 @@ namespace k3d.Logging.Impl
 
         IClientListener IFactory.CreateClientListener(Socket socket, IMessageHistoryInternal history, IMessageSerializer? serializer)
             => new ClientListener(socket, history, serializer ?? _ifactory.CreateMessageSerializer());
+
+        IMessageFormatter IFactory.CreateDefaultFormatter()
+            => new MessageFormatter();
 
         private readonly IFactory _ifactory;
     }
